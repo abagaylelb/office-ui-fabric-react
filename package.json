@@ -53,5 +53,11 @@
       "common/scripts/*.js",
       "apps/vr-tests/**/*.{ts,tsx}"
     ]
+  },
+  "dependencies": {
+    "clipboard-copy": "^2.0.1",
+    "office-ui-fabric-react": "^6.91.0",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
   }
 }

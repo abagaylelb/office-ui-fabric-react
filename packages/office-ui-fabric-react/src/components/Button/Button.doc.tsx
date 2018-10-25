@@ -4,6 +4,7 @@ import { ButtonDefaultExample } from './examples/Button.Default.Example';
 import { ButtonContextualMenuExample } from './examples/Button.ContextualMenu.Example';
 import { ButtonCompoundExample } from './examples/Button.Compound.Example';
 import { ButtonActionExample } from './examples/Button.Action.Example';
+import { ButtonCopyExample } from './examples/Button.Copy.Example';
 import { ButtonCommandBarExample } from './examples/Button.CommandBar.Example';
 import { ButtonIconExample } from './examples/Button.Icon.Example';
 import { ButtonAnchorExample } from './examples/Button.Anchor.Example';
@@ -16,6 +17,7 @@ export { ChecklistStatus };
 const ButtonDefaultExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Button/examples/Button.Default.Example.tsx') as string;
 const ButtonCompoundExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Button/examples/Button.Compound.Example.tsx') as string;
 const ButtonActionExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Button/examples/Button.Action.Example.tsx') as string;
+const ButtonCopyExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Button/examples/Button.Copy.Example.tsx') as string;
 const ButtonCommandBarExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Button/examples/Button.CommandBar.Example.tsx') as string;
 const ButtonIconExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Button/examples/Button.Icon.Example.tsx') as string;
 const ButtonAnchorExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Button/examples/Button.Anchor.Example.tsx') as string;
@@ -72,6 +74,11 @@ export const ButtonPageProps = (props: IButtonDocPageProps): IDocPageProps => ({
       title: 'Action Button',
       code: ButtonActionExampleCode,
       view: <ButtonActionExample disabled={props.areButtonsDisabled} checked={props.areButtonsChecked} />
+    },
+    {
+      title: 'Copy Button',
+      code: ButtonCopyExampleCode,
+      view: <ButtonCopyExample disabled={props.areButtonsDisabled} checked={props.areButtonsChecked} />
     }
   ],
 

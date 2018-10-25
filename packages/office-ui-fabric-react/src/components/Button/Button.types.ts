@@ -287,6 +287,8 @@ export interface IButtonProps
    * @deprecated Use 'secondaryText' instead.
    */
   description?: IStyle;
+
+  copyText?: string;
 }
 
 export enum ElementType {
