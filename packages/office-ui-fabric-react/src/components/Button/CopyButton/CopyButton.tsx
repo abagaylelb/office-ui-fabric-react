@@ -25,12 +25,13 @@ export class CopyButton extends BaseComponent<IButtonProps, {}> {
         iconProps={{ iconName: 'Copy' }}
         onRenderText={nullRender}
         onRenderDescription={nullRender}
-        onClick={this.copyTextClick}
+        onClick={this._copyTextClick}
       />
     );
   }
 
-  private copyTextClick = (): void => {
+  // Copies text property to the clipboard.
+  private _copyTextClick = (): void => {
     if (this.props && this.props.copyText) {
       copy(this.props.copyText);
     }
