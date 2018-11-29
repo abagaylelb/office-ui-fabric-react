@@ -1,13 +1,6 @@
 import * as React from 'react';
 import { BaseComponent, buttonProperties, classNamesFunction, getId, getNativeProps } from '../../Utilities';
-import {
-  IFacepileProps,
-  IFacepilePersona,
-  IFacepileStyleProps,
-  IFacepileStyles,
-  OverflowButtonType
-} from './Facepile.types';
-import { FocusZone, FocusZoneDirection } from '../../FocusZone';
+import { IFacepileProps, IFacepilePersona, IFacepileStyleProps, IFacepileStyles, OverflowButtonType } from './Facepile.types';
 import { FacepileButton } from './FacepileButton';
 import { Icon } from '../../Icon';
 import { Persona, IPersonaStyles } from '../../Persona';
@@ -42,14 +35,7 @@ export class FacepileBase extends BaseComponent<IFacepileProps, {}> {
 
   public render(): JSX.Element {
     let { overflowButtonProps } = this.props;
-    const {
-      ariaDescription,
-      chevronButtonProps,
-      maxDisplayablePersonas,
-      personas,
-      overflowPersonas,
-      showAddButton
-    } = this.props;
+    const { chevronButtonProps, maxDisplayablePersonas, personas, overflowPersonas, showAddButton } = this.props;
 
     const { _classNames } = this;
 
@@ -62,23 +48,16 @@ export class FacepileBase extends BaseComponent<IFacepileProps, {}> {
 
     const hasOverflowPersonas = overflowPersonas && overflowPersonas.length > 0;
     const personasPrimary: IFacepilePersona[] = hasOverflowPersonas ? personas : personas.slice(0, numPersonasToShow);
-    const personasOverflow: IFacepilePersona[] =
-      (hasOverflowPersonas ? overflowPersonas : personas.slice(numPersonasToShow)) || [];
+    const personasOverflow: IFacepilePersona[] = (hasOverflowPersonas ? overflowPersonas : personas.slice(numPersonasToShow)) || [];
 
     return (
       <div className={_classNames.root}>
         {this.onRenderAriaDescription()}
         <div className={_classNames.itemContainer}>
           {showAddButton ? this._getAddNewElement() : null}
-          <FocusZone
-            ariaDescribedBy={ariaDescription && this._ariaDescriptionId}
-            role="listbox"
-            direction={FocusZoneDirection.horizontal}
-          >
-            <ul className={_classNames.members}>
-              {this._onRenderVisiblePersonas(personasPrimary, personasOverflow.length === 0 && personas.length === 1)}
-            </ul>
-          </FocusZone>
+          <ul className={_classNames.members}>
+            {this._onRenderVisiblePersonas(personasPrimary, personasOverflow.length === 0 && personas.length === 1)}
+          </ul>
           {overflowButtonProps ? this._getOverflowElement(personasOverflow) : null}
         </div>
       </div>
@@ -103,9 +82,7 @@ export class FacepileBase extends BaseComponent<IFacepileProps, {}> {
 
   private _onRenderVisiblePersonas(personas: IFacepilePersona[], singlePersona: boolean): JSX.Element[] {
     return personas.map((persona: IFacepilePersona, index: number) => {
-      const personaControl: JSX.Element = singlePersona
-        ? this._getPersonaControl(persona)
-        : this._getPersonaCoinControl(persona);
+      const personaControl: JSX.Element = singlePersona ? this._getPersonaControl(persona) : this._getPersonaCoinControl(persona);
       return (
         <li key={`${singlePersona ? 'persona' : 'personaCoin'}-${index}`} className={this._classNames.member}>
           {persona.onClick
@@ -153,15 +130,13 @@ export class FacepileBase extends BaseComponent<IFacepileProps, {}> {
     );
   }
 
-  private _getElementWithOnClickEvent(
-    personaControl: JSX.Element,
-    persona: IFacepilePersona,
-    index: number
-  ): JSX.Element {
+  private _getElementWithOnClickEvent(personaControl: JSX.Element, persona: IFacepilePersona, index: number): JSX.Element {
+    const { keytipProps } = persona;
     return (
       <FacepileButton
         {...getNativeProps(persona, buttonProperties)}
         {...this._getElementProps(persona, index)}
+        keytipProps={keytipProps}
         onClick={this._onPersonaClick.bind(this, persona)}
       >
         {personaControl}
@@ -169,11 +144,7 @@ export class FacepileBase extends BaseComponent<IFacepileProps, {}> {
     );
   }
 
-  private _getElementWithoutOnClickEvent(
-    personaControl: JSX.Element,
-    persona: IFacepilePersona,
-    index: number
-  ): JSX.Element {
+  private _getElementWithoutOnClickEvent(personaControl: JSX.Element, persona: IFacepilePersona, index: number): JSX.Element {
     return (
       <div {...getNativeProps(persona, buttonProperties)} {...this._getElementProps(persona, index)}>
         {personaControl}
@@ -219,6 +190,7 @@ export class FacepileBase extends BaseComponent<IFacepileProps, {}> {
     }
 
     const personaNames: string = personasOverflow.map((p: IFacepilePersona) => p.personaName).join(', ');
+    const overflowButtonTitle: string | undefined = overflowButtonProps && overflowButtonProps.title;
     const numPersonasNotPictured: number = Math.max(personasOverflow.length, 0);
 
     const { _classNames } = this;
@@ -226,11 +198,12 @@ export class FacepileBase extends BaseComponent<IFacepileProps, {}> {
     return (
       <FacepileButton
         {...overflowButtonProps}
-        ariaDescription={personaNames}
+        ariaDescription={overflowButtonTitle ? undefined : personaNames}
         className={_classNames.descriptiveOverflowButton}
       >
         <PersonaCoin
-          title={personaNames}
+          // Check if a title is being added to the parenting FacepileButton. If so, do not set title on child PersonaCoin
+          title={overflowButtonTitle ? undefined : personaNames}
           size={personaSize}
           onRenderInitials={this._renderInitialsNotPictured(numPersonasNotPictured)}
           initialsColor={PersonaInitialsColor.transparent}
