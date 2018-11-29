@@ -1,0 +1,11 @@
+{
+  "changes": [
+    {
+      "packageName": "office-ui-fabric-react",
+      "comment": "Created new experimental component - CopyButton. Adds a BaseButton property (copyText) but is independent of other code areas. Also added testing and an example in the Button examples page.",
+      "type": "minor"
+    }
+  ],
+  "packageName": "office-ui-fabric-react",
+  "email": "abagayle@hotmail.com"
+}
