@@ -15,19 +15,19 @@ This component is independent of the code-base except that it does add a propert
 
 Experimental Component Checklist:
 
-  Validate file/package structure [X - Not validated - Could never get to work]
-  Validating the atomic-ness of the component [check]
-  Is the component unique (is it already implemented elsewhere) [check]
-  Can it be broken down further [check]
-  Validating the api surface [check]
-  Does it have the basic expected props? [check]
-  Are there naming or typing inconsistencies? [check]
-  Is it hard to use or understand? [check]
-  Is the documentation complete and clear? [check]
-  Are the prop descriptions consistent with other prop descriptions? [check]
-  Are the examples inspiring, delightful, useful, straightforward? [check - written examples are checked-in]
-  Can you copy paste into a codepen? [check]
-  Are the features robust enough to delight? (are we missing basic fundamentals?) [check]
+  - Validate file/package structure [X - Not validated - Could never get to work]
+  - Validating the atomic-ness of the component [check]
+  - Is the component unique (is it already implemented elsewhere) [check]
+  - Can it be broken down further [check]
+  - Validating the api surface [check]
+  - Does it have the basic expected props? [check]
+  - Are there naming or typing inconsistencies? [check]
+  - Is it hard to use or understand? [check]
+  - Is the documentation complete and clear? [check]
+  - Are the prop descriptions consistent with other prop descriptions? [check]
+  - Are the examples inspiring, delightful, useful, straightforward? [check - written examples are checked-in]
+  - Can you copy paste into a codepen? [check]
+  - Are the features robust enough to delight? (are we missing basic fundamentals?) [check]
 
 
 
