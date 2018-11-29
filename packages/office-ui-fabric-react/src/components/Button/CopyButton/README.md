@@ -13,7 +13,7 @@ Testing Instructions:
 
 This component is independent of the code-base except that it does add a property to the BaseButton component, namely that of copyText (the text that will be copied onto the clipboard). 
 
-Experiemental Component Checklist:
+Experimental Component Checklist:
 
   Validate file/package structure [X - Not validated - Could never get to work]
   Validating the atomic-ness of the component [check]
