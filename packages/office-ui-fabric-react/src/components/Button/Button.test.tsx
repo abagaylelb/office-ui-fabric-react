@@ -12,6 +12,7 @@ import { ActionButton } from './ActionButton/ActionButton';
 import { CommandBarButton } from './CommandBarButton/CommandBarButton';
 import { CompoundButton } from './CompoundButton/CompoundButton';
 import { KeyCodes } from '../../Utilities';
+import { CopyButton } from '.';
 // import { IconButton } from "src";
 
 const alertClicked = (): void => {
@@ -74,6 +75,12 @@ describe('Button', () => {
 
   it('renders IconButton correctly', () => {
     const component = renderer.create(<IconButton iconProps={{ iconName: 'Emoji2' }} title="Emoji" ariaLabel="Emoji" />);
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders CopyButton correctly', () => {
+    const component = renderer.create(<CopyButton copyText="Copied" />);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
